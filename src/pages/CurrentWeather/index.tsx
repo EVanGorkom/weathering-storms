@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CurrentWeather } from './types';
 import { mapCurrentWeather } from '../../utils/mapCurrentWeather';
 import { SearchField } from '../../components/search_field/searchFind';
+import { Loading } from '../../components/loading/loading'
+
 
 function CurrentWeatherDisplay() {
   const initialWeatherState: CurrentWeather = {
@@ -10,40 +12,29 @@ function CurrentWeatherDisplay() {
   };
   const [weather, setWeather] = useState<CurrentWeather>(initialWeatherState);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
+  const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
-  useEffect(() => {
+  const fetchWeatherBySearch = (city: string, units: string = "imperial") => {
+    setIsLoading(true)
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=austin&units=imperial&appid=${
-        import.meta.env.VITE_API_KEY
-      }`,
+      `${BASE_URL}?q=${city}&units=${units}&appid=${API_KEY}`,
       {
         method: 'GET',
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const currentWeather = mapCurrentWeather(data);
-        setWeather(currentWeather);
       })
-      .catch((error) => console.log(error));
-  }, []);
-
-  const fetchWeatherBySearch = (city: string) => {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${
-        import.meta.env.VITE_API_KEY
-      }`,
-      {
-        method: 'GET',
-      }
-    )
       .then((response) => response.json())
       .then((data) => {
         const currentWeather = mapCurrentWeather(data);
         setWeather(currentWeather);
+        setIsLoading(false)
       })
       .catch((error) => console.log(error));
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleSearch = () => {
     fetchWeatherBySearch(searchValue);
@@ -52,6 +43,7 @@ function CurrentWeatherDisplay() {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)
   };
+
 
   return (
     <>
