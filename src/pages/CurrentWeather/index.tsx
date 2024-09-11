@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CurrentWeather } from './types';
 import { mapCurrentWeather } from '../../utils/mapCurrentWeather';
-import { SearchField } from '../../components/search_field/searchFind';
+import { SearchField } from '../../components/search_field/searchField';
 import { Loading } from '../../components/loading/loading'
 
 
@@ -118,36 +118,71 @@ function CurrentWeatherDisplay() {
 
   return (
     <>
-      <SearchField
-        inputValue={searchValue}
-        inputOnChange={handleSearchChange}
-        buttonOnClick={handleSearch}
-      />
-
-      {locationAllowed && weather ? (
-        <div className="current-weather-details">
-          <div>Current Weather in {weather.name}</div>
-          <div>{weather.description}</div>
-          <div>Temperature: {weather.temperature}</div>
-          <div>Low: {weather.tempMin}</div>
-          <div>High: {weather.tempMax}</div>
-          <div>Humidity: {weather.humidity}</div>
-          <div>Feels Like: {weather.feelsLike}</div>
+      <div className="min-h-screen bg-lightblue-100 flex flex-col items-center">
+        {/* Search Field */}
+        <div className="search-field m-5 border bg-slate-500 p-4 rounded-lg shadow-md">
+          <SearchField
+            inputValue={searchValue}
+            inputOnChange={handleSearchChange}
+            buttonOnClick={handleSearch}
+          />
         </div>
-      ) : (
-        searchValue &&
-        weather && (
-          <div className="current-weather-details">
-            <div>Current Weather in {weather.name}</div>
-            <div>{weather.description}</div>
-            <div>Current Temperature: {weather.temperature}</div>
-            <div>Low: {weather.tempMin}</div>
-            <div>High: {weather.tempMax}</div>
-            <div>Humidity: {weather.humidity}</div>
-            <div>Feels Like: {weather.feelsLike}</div>
+
+        {/* Weather Display */}
+        {locationAllowed && weather ? (
+          <div className="current-weather-details bg-blue-600 text-white m-5 p-5 rounded-lg shadow-lg flex flex-col items-center justify-center">
+            <h1 className="text-2xl font-bold mb-4">
+              Current Weather in {weather.name}
+            </h1>
+            <div className="text-lg">{weather.description}</div>
+            <div className="text-lg">
+              Temperature:{' '}
+              <span className="font-semibold">{weather.temperature}°F</span>
+            </div>
+            <div className="text-lg">
+              Low: <span className="font-semibold">{weather.tempMin}°F</span>
+            </div>
+            <div className="text-lg">
+              High: <span className="font-semibold">{weather.tempMax}°F</span>
+            </div>
+            <div className="text-lg">
+              Humidity: <span className="font-semibold">{weather.humidity}%</span>
+            </div>
+            <div className="text-lg">
+              Feels Like:{' '}
+              <span className="font-semibold">{weather.feelsLike}°F</span>
+            </div>
           </div>
-        )
-      )}
+        ) : (
+          searchValue &&
+          weather && (
+            <div className="current-weather-details bg-blue-600 text-white m-12 p-5 rounded-lg shadow-lg flex flex-col items-center justify-center">
+              <h1 className="text-2xl font-bold mb-4">
+                Current Weather in {weather.name}
+              </h1>
+              <div className="text-lg">{weather.description}</div>
+              <div className="text-lg">
+                Temperature:{' '}
+                <span className="font-semibold">{weather.temperature}°F</span>
+              </div>
+              <div className="text-lg">
+                Low: <span className="font-semibold">{weather.tempMin}°F</span>
+              </div>
+              <div className="text-lg">
+                High: <span className="font-semibold">{weather.tempMax}°F</span>
+              </div>
+              <div className="text-lg">
+                Humidity:{' '}
+                <span className="font-semibold">{weather.humidity}%</span>
+              </div>
+              <div className="text-lg">
+                Feels Like:{' '}
+                <span className="font-semibold">{weather.feelsLike}°F</span>
+              </div>
+            </div>
+          )
+        )}
+      </div>
     </>
   );
 }
