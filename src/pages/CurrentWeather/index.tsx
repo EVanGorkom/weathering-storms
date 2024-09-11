@@ -7,6 +7,7 @@ import { Loading } from '../../components/loading/loading'
 
 function CurrentWeatherDisplay() {
   const initialWeatherState: CurrentWeather = {
+    name: "",
     main: "",
     description: "",
     temperature: 0,
@@ -70,6 +71,7 @@ function CurrentWeatherDisplay() {
       })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         const currentWeather = mapCurrentWeather(data);
         console.log(weather);
         setWeather(currentWeather);
@@ -124,8 +126,9 @@ function CurrentWeatherDisplay() {
 
       {locationAllowed && weather ? (
         <div className="current-weather-details">
+          <div>Current Weather in {weather.name}</div>
           <div>{weather.description}</div>
-          <div>Current Temperature: {weather.temperature}</div>
+          <div>Temperature: {weather.temperature}</div>
           <div>Low: {weather.tempMin}</div>
           <div>High: {weather.tempMax}</div>
           <div>Humidity: {weather.humidity}</div>
@@ -135,6 +138,7 @@ function CurrentWeatherDisplay() {
         searchValue &&
         weather && (
           <div className="current-weather-details">
+            <div>Current Weather in {weather.name}</div>
             <div>{weather.description}</div>
             <div>Current Temperature: {weather.temperature}</div>
             <div>Low: {weather.tempMin}</div>

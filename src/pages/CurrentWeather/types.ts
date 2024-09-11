@@ -1,4 +1,5 @@
 export interface CurrentWeatherDto {
+  name: string;
   weather: [
     {
       main: string;
@@ -15,6 +16,7 @@ export interface CurrentWeatherDto {
 }
 
 export interface CurrentWeather {
+  name: string;
   main: string;
   description: string;
   temperature: number;

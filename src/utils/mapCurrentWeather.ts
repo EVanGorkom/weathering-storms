@@ -5,6 +5,7 @@ import {
 
 export function mapCurrentWeather(data: CurrentWeatherDto): CurrentWeather {
   return {
+    name: data.name,
     main: data.weather[0].main,
     description: data.weather[0].description,
     temperature: data.main.temp,
