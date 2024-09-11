@@ -5,7 +5,12 @@ import {
 
 export function mapCurrentWeather(data: CurrentWeatherDto): CurrentWeather {
   return {
+    main: data.weather[0].main,
+    description: data.weather[0].description,
     temperature: data.main.temp,
     feelsLike: data.main.feels_like,
+    tempMin: data.main.temp_min,
+    tempMax: data.main.temp_max,
+    humidity: data.main.humidity
   };
 }
