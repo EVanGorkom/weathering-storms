@@ -48,3 +48,12 @@ export default tseslint.config({
   },
 })
 ```
+
+
+NEXT STEPS:
+1. Refactor the fetch to be more dynamic
+1. Introduce a 'loading' component
+1. Introduce multi-state machine (Idle => loading => error || success => Idle)
+1. Introduce a 'forecast' component
+1. Create logic for forecast that populates images per hour based on enum values (cloudy = cloudy image, sunny = sunny image, etc.)
+1. Styling
