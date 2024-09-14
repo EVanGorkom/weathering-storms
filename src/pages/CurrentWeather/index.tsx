@@ -21,7 +21,6 @@ function CurrentWeatherDisplay() {
   const [isLoading, setIsLoading] = useState(false);
   const [locationAllowed, setLocationAllowed] = useState(false);
   const CURRENT_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-  // const WEEKLY_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast/daily";
   const API_KEY = import.meta.env.VITE_API_KEY;
 
 
@@ -119,15 +118,6 @@ function CurrentWeatherDisplay() {
   return (
     <>
       <div className="min-h-screen bg-lightblue-100 flex flex-col items-center">
-        {/* Search Field */}
-        <div className="search-field m-5 border bg-slate-500 p-4 rounded-lg shadow-md">
-          <SearchField
-            inputValue={searchValue}
-            inputOnChange={handleSearchChange}
-            buttonOnClick={handleSearch}
-          />
-        </div>
-
         {/* Weather Display */}
         {locationAllowed && weather ? (
           <div className="current-weather-details bg-blue-600 text-white m-5 p-5 rounded-lg shadow-lg flex flex-col items-center justify-center">
@@ -146,7 +136,8 @@ function CurrentWeatherDisplay() {
               High: <span className="font-semibold">{weather.tempMax}°F</span>
             </div>
             <div className="text-lg">
-              Humidity: <span className="font-semibold">{weather.humidity}%</span>
+              Humidity:{' '}
+              <span className="font-semibold">{weather.humidity}%</span>
             </div>
             <div className="text-lg">
               Feels Like:{' '}
@@ -182,6 +173,15 @@ function CurrentWeatherDisplay() {
             </div>
           )
         )}
+
+        {/* Search Field */}
+        <div className="search-field m-5 border bg-slate-500 p-4 rounded-lg shadow-md">
+          <SearchField
+            inputValue={searchValue}
+            inputOnChange={handleSearchChange}
+            buttonOnClick={handleSearch}
+          />
+        </div>
       </div>
     </>
   );
