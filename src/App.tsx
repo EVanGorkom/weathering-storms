@@ -1,4 +1,3 @@
-import './App.css';
 import { CurrentWeatherDisplay } from './pages/CurrentWeather';
 
 function App() {
