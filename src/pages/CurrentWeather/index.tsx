@@ -53,7 +53,6 @@ function CurrentWeatherDisplay() {
       .then((response) => response.json())
       .then((data) => {
         const currentWeather = mapCurrentWeather(data);
-        console.log(weather);
         setWeather(currentWeather);
         setIsLoading(false);
       })
@@ -70,9 +69,7 @@ function CurrentWeatherDisplay() {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         const currentWeather = mapCurrentWeather(data);
-        console.log(weather);
         setWeather(currentWeather);
         setIsLoading(false);
       })
@@ -80,6 +77,7 @@ function CurrentWeatherDisplay() {
       setIsLoading(false);
   };
 
+  // currently unused
   const fetchForecastBySearch = (city: string, units: string = "imperial") => {
     setIsLoading(true);
     fetch(
