@@ -4,8 +4,14 @@ import { CurrentWeatherDisplay } from './pages/CurrentWeather';
 function App() {
   return (
     <>
-      <h1 content-center text-6xl>Weathering Storms</h1>
-      <CurrentWeatherDisplay />
+      <div className="min-h-screen bg-gradient-to-b from-blue-400 via-blue-500 to-blue-900">
+        <h1 className="content-center text-center p-4 text-6xl text-white font-serif">
+          Weathering Storms
+        </h1>
+        <body>
+          <CurrentWeatherDisplay />
+        </body>
+      </div>
     </>
   );
 }
