@@ -78,22 +78,22 @@ function CurrentWeatherDisplay() {
   };
 
   // currently unused
-  const fetchForecastBySearch = (city: string, units: string = "imperial") => {
-    setIsLoading(true);
-    fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${units}&appid=${API_KEY}`,
-      {
-        method: 'GET',
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setIsLoading(false);
-      })
-      .catch((error) => console.log(error));
-    setIsLoading(false);
-  }
+  // const fetchForecastBySearch = (city: string, units: string = "imperial") => {
+  //   setIsLoading(true);
+  //   fetch(
+  //     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${units}&appid=${API_KEY}`,
+  //     {
+  //       method: 'GET',
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => console.log(error));
+  //   setIsLoading(false);
+  // }
 
   useEffect(() => {
     getUserLocation();
@@ -105,7 +105,7 @@ function CurrentWeatherDisplay() {
 
   const handleSearch = () => {
     fetchWeatherBySearch(searchValue);
-    fetchForecastBySearch(searchValue);
+    // fetchForecastBySearch(searchValue);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
